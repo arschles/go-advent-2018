@@ -104,11 +104,11 @@ The project started as a few lines of code I wrote one evening and has grown to 
 
 We released a [beta](https://medium.com/project-athens/the-athens-proxy-is-in-beta-bd95abee07db) version about a month ago, and it's being used inside of several organizations. We're also working on our [beta 2 release](https://github.com/gomods/athens/milestone/3) and a [preview public server](https://github.com/gomods/athens/milestone/5) at the moment.
 
-If you want to use Athens for your project, please check out our [installation docs](https://docs.gomods.io/install/).
+Please follow [@gomodsio](https://twitter.com/gomodsio) on Twitter to keep up with these releases and other Athens news.
 
 ## Get Involved!
 
-We spend a lot of time documenting how to set up and use Athens, so we'd love for you to [try it out](https://docs.gomods.io/install/) and tell us what you think.
+We spend a lot of time documenting how to set up and use Athens, so we'd love for you to [try it out](https://docs.gomods.io/install/) and tell us what you think. We'd also really appreciate [starring us on GitHub](https://github.com/gomods/athens) so more Gophers can find us.
 
 There are [lots of ways to contribute](https://docs.gomods.io/contributing/community/participating/) to Athens, and we have interesting work to do. Whether you want to "lurk and learn", write code, or anything in between, you're welcome to join us, and we'll help you get started.
 
