@@ -98,9 +98,13 @@ Because the download API is HTTP, we can take advantage of all the battle tested
 
 This is my favorite topic because it promotes collaboration and open-ness. The download API is the _lingua franca_ of the Go modules ecosystem and Athens implements it. Anyone can build their own proxy or run Athens themselves and participate in the module proxy ecosystem.
 
-## The Athens Community
+## Where is Athens Now?
 
 The project started as a few lines of code I wrote one evening and has grown to a community of over 50 contributors across 3 continents. Even more importantly to me is that we've maintained a nice, supportive and inclusive place to be, and we all work to keep it that way.
+
+We released a [beta](https://medium.com/project-athens/the-athens-proxy-is-in-beta-bd95abee07db) version about a month ago, and it's being used inside of several organizations. We're also working on our [beta 2 release](https://github.com/gomods/athens/milestone/3) and a [preview public server](https://github.com/gomods/athens/milestone/5) at the moment.
+
+If you want to use Athens for your project, please check out our [installation docs](https://docs.gomods.io/install/).
 
 ## Get Involved!
 
