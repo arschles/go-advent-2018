@@ -27,37 +27,35 @@ The direct-from-VCS approach has served us pretty well since the beginning of de
 
 - When Google Code shut down, we lost some packages that were important to the community
 - The [go-bindata package](https://github.com/go-bindata/go-bindata) was removed from GitHub and then pushed to another repository, and everybody who depended it had to create a package alias
-- Some modules are massive when you `git clone` them. For example, Kubernetes is over 800M when checked out
+- Some modules are massive when you `git clone` them. For example, Kubernetes is over 250M when checked out (using `git clone --depth=1`)
 
 ### GitHub Isn't A CDN
 
-The above issues reveal a common underlying problem. Our module _code_ is not separate from module _artifacts_, and since we don't have that separation, we need to use the same systems to develop our modules and to serve those very same modules to users who depend on them.
+The above issues reveal a common underlying problem. Our module _code_ is not separate from module _artifacts_, and since we don't have that separation, we have to use the same systems to develop our modules and to serve those very same modules to users who depend on them.
 
 GitHub and other source code hosting systems are great tools for collaborating on code, making changes, and tracking history. But we've been also relying on the same platforms as highly available hosts for module artifacts, and limitations naturally show. As the community continues to grow, these limitations will come up more and more often.
 
-In diagrams, we need to move from fetching modules directly from VCS:
+We need to move from fetching modules directly from VCS:
 
 ![go modules before](/img/go-modules-before.png)
 
-To fetching modules from a content delivery network:
+To fetching modules from some kind of content delivery network (CDN):
 
 ![cdn diagram](/img/go-modules-with-cdn.png)
 
-## The Download API
+## The HTTP Download API
 
-The download API is the feature of modules that lets us add a layer of indirection between the VCS and the module consumer. In very real terms, we can design an architecture that lets us use the same VCS tools we already use, but we can also host _proxy servers_ that implement the API and serve module artifacts to module consumers.
+The download API is the feature of modules that lets us add a layer of indirection between the VCS and the module consumer (the CDN in the above diagram). In very real terms, we can design an architecture that lets us use the same VCS tools we already use, but we can also build and host _proxy servers_ that implement the API and serve module artifacts to consumers.
 
 It's a pretty straightforward HTTP API that anyone can implement.
 
 ## How Athens Fits
 
-I was aware of the limitations of serving module artifacts directly from GitHub based on prior experience, and had been trying to build something like a proxy server for some time. A few years ago, I tried building a git proxy called `goprox` that stored code in an immutable database instead of redirecting to the upstream git repository. That way the code would be available regardless of what happened upstream. It was very buggy but it showed me that proxies could work even before the download API came out :grinning:.
-
-When I first read the vgo design papers - specifically the [article describing the download protocol](https://research.swtch.com/vgo-module) - I saw a great opportunity to build a new kind of proxy server. I build a little server called `vgoprox` one evening, following the concepts I tested in `goprox`, and was very excited to see it working with `vgo` pretty quickly. I shared the code with a few other folks and we renamed it to [Athens](https://github.com/gomods/athens).
-
 At the highest level, Athens is the "CDN" in the above diagram. It implements the HTTP download protocol, stores its dependencies in an immutable database, and fills that database from upstream VCS hosts:
 
 ![athens-diagram](/img/athens-diagram.png)
+
+The project started as a few lines of code I wrote one evening to a community of over 50 contributors across 3 continents and, most importantly to me, a nice, supportive and inclusive place in which to participate.
 
 ## Experiences with Athens
 
@@ -89,6 +87,8 @@ This is my favorite topic because it promotes collaboration and open-ness. The d
 
 ## Get Involved!
 
-We have some interesting challenges in front of us, and can use help in lots of areas. Whether you're an experienced Gopher, just starting, love writing docs, or anything else, we'd love to have you.
+We spend a lot of time documenting how to set up and use Athens, so we'd love for you to [try it out](https://docs.gomods.io/install/) and tell us what you think.
+
+If you're interested in contributing, come chat with us in the `#athens` channel on the [Gophers slack](https://gophersinvite.herokuapp.com/), [file an issue](https://github.com/gomods/athens/issues/new/choose), or [choose another way](https://docs.gomods.io/contributing/community/participating/).
 
 We're a nice, respectful, and welcoming group, and [absolutely everybody is welcome](https://arschles.com/blog/absolutely-everybody-is-welcome/) to join us.
