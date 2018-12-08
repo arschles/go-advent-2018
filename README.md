@@ -1,5 +1,7 @@
 # Bringing Sanity to your Dependencies with Go Modules and Athens
 
+![athens gopher](/img/athens-gopher.png)
+
 _Go Advent, Dec. 15, 2018_
 
 As many of us know, Go version 1.11 introduced [Go Modules](https://github.com/golang/go/wiki/Modules), a brand new dependency management system. 
@@ -55,13 +57,18 @@ Many of us use Git to push our code to GitHub and Git tags or GitHub releases to
 
 And by building _proxy servers_, we don't have to change anything about our workflow to fetch modules. A simple `go get` against a proxy server will fetch a module at the version of your choice.
 
-## How Athens Fits
+## Introducing Athens
 
-Athens is the first open source implementation of a module proxy. It implements the HTTP download protocol, stores its dependencies in an immutable database, and fills that database from upstream VCS hosts:
+Now that there's a high level architecture for module proxies, the question is what should a proxy look like? There are two main possibilities:
+
+- A CDN backed by static storage like a cloud blob store or a filesystem
+- A server, backed by a database, that fetches modules from an upstream VCS host as needed
+
+In order to not disturb workflows like discussed in the previous section, we need to implement the second one, and Athens is the first open source implementation to do that.
+
+In other words, Athens is an immutable mirror of upstream VCS hosts. When you execute `go get github.com/athens-artifacts/maturelib@v1.0.0` against an Athens proxy, Athens will store [this code](https://github.com/athens-artifacts/maturelib/releases/tag/v0.0.1) in its database forever, regardless of what happens to that code on GitHub.
 
 ![athens-diagram](/img/athens-diagram.png)
-
-The project started as a few lines of code I wrote one evening to a community of over 50 contributors across 3 continents and, most importantly to me, a nice, supportive and inclusive place in which to participate.
 
 ## Experiences with Athens
 
@@ -91,10 +98,23 @@ Because the download API is HTTP, we can take advantage of all the battle tested
 
 This is my favorite topic because it promotes collaboration and open-ness. The download API is the _lingua franca_ of the Go modules ecosystem and Athens implements it. Anyone can build their own proxy or run Athens themselves and participate in the module proxy ecosystem.
 
+## The Athens Community
+
+The project started as a few lines of code I wrote one evening and has grown to a community of over 50 contributors across 3 continents. Even more importantly to me is that we've maintained a nice, supportive and inclusive place to be, and we all work to keep it that way.
+
 ## Get Involved!
 
 We spend a lot of time documenting how to set up and use Athens, so we'd love for you to [try it out](https://docs.gomods.io/install/) and tell us what you think.
 
-If you're interested in contributing, come chat with us in the `#athens` channel on the [Gophers slack](https://gophersinvite.herokuapp.com/), [file an issue](https://github.com/gomods/athens/issues/new/choose), or [choose another way](https://docs.gomods.io/contributing/community/participating/).
+There are [lots of ways to contribute](https://docs.gomods.io/contributing/community/participating/) to Athens, and we have interesting work to do. Whether you want to "lurk and learn", write code, or anything in between, you're welcome to join us, and we'll help you get started.
 
-We're a nice, respectful, and welcoming group, and [absolutely everybody is welcome](https://arschles.com/blog/absolutely-everybody-is-welcome/) to join us.
+The above link has an exhaustive list of ways to get involved, but here are two super easy ways to start:
+
+- Come chat with us in the `#athens` channel on the [Gophers slack](https://gophersinvite.herokuapp.com/)
+- Come to one of our [weekly developer meetings](https://aka.ms/athensdevmeeting)
+
+[Absolutely everybody is welcome](https://arschles.com/blog/absolutely-everybody-is-welcome/) to join us, and I hope to see you soon!
+
+:heart:
+
+[@arschles](https://twitter.com/arschles)
