@@ -1,3 +1,7 @@
+# Archived
+
+This article has been moved to the [gopher academy repository](https://github.com/gopheracademy/gopheracademy-web) and has been submitted as [PR #303](https://github.com/gopheracademy/gopheracademy-web/pull/303)
+
 # Bringing Sanity to your Dependencies with Go Modules and Athens
 
 <p align="center"><img src="/img/athens-gopher.png" width="360"></p>
