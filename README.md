@@ -1,6 +1,6 @@
 # Bringing Sanity to your Dependencies with Go Modules and Athens
 
-![athens gopher](/img/athens-gopher.png)
+<p align="center"><img src="/img/athens-gopher.png" width="360"></p>
 
 _Go Advent, Dec. 15, 2018_
 
